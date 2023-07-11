@@ -395,7 +395,4 @@ FodyWeavers.xsd
 *.msp
 
 # JetBrains Rider
-*.sln.im
 
-#venv
-AirBnb
