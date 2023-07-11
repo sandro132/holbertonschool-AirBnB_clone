@@ -395,8 +395,4 @@ FodyWeavers.xsd
 *.msp
 
 # JetBrains Rider
-*.sln.iml
 
-
-#venv
-tloz
