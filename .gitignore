@@ -396,3 +396,9 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 
+#venv
+Airbnb
+
+
+# test 
+test_base_model_dict.py
