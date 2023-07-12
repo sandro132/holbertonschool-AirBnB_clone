@@ -1,4 +1,5 @@
 import unittest
+from models.base_model import BaseModel
 
 class TestBaseModel(unittest.TestCase):
 
@@ -6,6 +7,7 @@ class TestBaseModel(unittest.TestCase):
         self.base = BaseModel()
 
     def test_method_save(self):
+        self.base = BaseModel()
         testsave = self.base.update_at()
         self.base.save()
         self.assertNotEqual(testsave, self.created_at)
@@ -22,6 +24,7 @@ class TestBaseModel(unittest.TestCase):
 #        self.assertTrue(hasattr(BaseModel, "to_dict"))
 
     def test_init(self):
+        self.base = BaseModel()
         self.assertTrue(isinstance(self.base, BaseModel))
 
 if __name__ == '__main__':
