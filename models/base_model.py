@@ -13,12 +13,11 @@ class BaseModel:
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
         
-       if len(kwargs) != 0:
-            for x, y in kwargs.items():
-                if x == "created_at" or x == "updated_at":
-                    self.__dict__[x] = datetime.strptime(y, dt_format)
-                else:
-                    self.__dict__[x] = y
+        if len(kwargs) != 0:
+            protected_attrs = ["created_at", "updated_at"]
+            for k, v in kwargs.items():
+                if k == "created_at" or x == "updated_at":
+                    setattr(self, k, datetime.strptime(v, "%Y-%m-%dT%H:%M:%S.%f"))
         else:
             models.storage.new(self)
         
