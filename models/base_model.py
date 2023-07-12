@@ -11,13 +11,13 @@ class BaseModel:
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
         
-        '''if len(kwargs) != 0:
+        if len(kwargs) != 0:
             protected_attrs = ["created_at", "updated_at"]
             for k, v in kwargs.items():
                 if k in protected_attrs:
                     setattr(self, k, datetime.strptime(v, "%Y-%m-%dT%H:%M:%S.%f"))
                 else:
-                    setattr(self, k, v)'''
+                    setattr(self, k, v)
         
     def __str__(self):
         return "[{}] ({}) ({})".format(self.__class__.__name__, self.id, self.__dict__)
