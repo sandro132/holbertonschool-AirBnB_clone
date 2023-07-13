@@ -1,27 +1,23 @@
 #!/usr/bin/python3
-""" BaseModel class """
-
-import models
-from datetime import datetime
+'''Important several modules'''
 import uuid
+from datetime import *
+import models
 
-date_time = "%Y-%m-%dT%H:%M:%S.%f"
+
+'''Create the class call BaseModel'''
 
 
-class BaseModel():
-    """
-    class that defines all common
-    attributes/methods for other classes
-    """
+class BaseModel:
+
+    '''Initializate the function init'''
+
     def __init__(self, *args, **kwargs):
-        """ Object instantiation with optional dictionary attributes """
         if kwargs:
             for key, value in kwargs.items():
-                if key == "created_at":
-                    self.created_at = datetime.strptime(value, date_time)
-                elif key == "updated_at":
-                    self.updated_at = datetime.strptime(value, date_time)
-                elif key != "__class__":
+                if key in ['created_at', 'updated_at']:
+                    setattr(self, key, datetime.fromisoformat(value))
+                elif key != '__class__':
                     setattr(self, key, value)
         else:
             self.id = str(uuid.uuid4())
@@ -30,22 +26,19 @@ class BaseModel():
             models.storage.new(self)
 
     def save(self):
-        """Updates public attribute updated_at with current datetime"""
+        '''updates the public instance attribute updated_at with the current datetime'''
         self.updated_at = datetime.now()
         models.storage.save()
 
-    def to_dict(self):
-        """
-        Returns a dictionary containing all keys/values
-        of __dict__ of the instance
-        """
-        copy_dict = self.__dict__.copy()
-        copy_dict["__class__"] = type(self).__name__
-        for key, value in copy_dict.items():
-            if isinstance(value, datetime):
-                copy_dict[key] = value.isoformat()
-        return copy_dict
-
     def __str__(self):
-        """ String representation of an instance """
-        return f'[{self.__class__.__name__}] ({self.id}) {self.__dict__}'
+        '''Defining the function str'''
+        class_name = self.__class__.__name__
+        return "[{}] ({}) {}".format(class_name, self.id, self.__dict__)
+
+    def to_dict(self):
+        '''returns a dictionary containing all keys/values of __dict__ of the instance'''
+        my_object = self.__dict__.copy()
+        my_object['__class__'] = __class__.__name__
+        my_object['created_at'] = self.created_at.isoformat()
+        my_object['updated_at'] = self.updated_at.isoformat()
+        return my_object
