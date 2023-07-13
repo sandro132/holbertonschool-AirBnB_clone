@@ -1,10 +1,19 @@
 import unittest
+import os
 from models.base_model import BaseModel
 
 class TestBaseModel(unittest.TestCase):
 
     def setup(self):
         self.base = BaseModel()
+
+    @classmethod
+    def tearDownClass(self):
+        del self.base1
+        try:
+            os.remove("file.json")
+        except FileNotFoundError:
+            pass
 
     def test_method_save(self):
         self.base = BaseModel()
