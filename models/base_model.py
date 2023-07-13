@@ -1,29 +1,23 @@
 #!/usr/bin/python3
-""" Class BaseModel """
 
 import uuid
 from datetime import datetime
-import models
 
+'''BaseModel'''
 
 class BaseModel:
-    """ Define the class BaseModel """
-
-    def __init__(self, *args, **kwargs):
-        """ Initialize the class BaseModel """
-        dt_format = "%Y-%m-%dT%H:%M:%S.%f"
+    def __init__(self):
         self.id = str(uuid.uuid4())
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
-
+        
         if len(kwargs) != 0:
-            for x, y in kwargs.items():
-                if x == "created_at" or x == "updated_at":
-                    self.__dict__[x] = datetime.strptime(y, dt_format)
+            protected_attrs = ["created_at", "updated_at"]
+            for k, v in kwargs.items():
+                if k in protected_attrs:
+                    setattr(self, k, datetime.strptime(v, "%Y-%m-%dT%H:%M:%S.%f"))
                 else:
-                    self.__dict__[x] = y
-        else:
-            models.storage.new(self)
+                    setattr(self, k, v)
         
     def __str__(self):
         return "[{}] ({}) ({})".format(self.__class__.__name__, self.id, self.__dict__)
