@@ -2,17 +2,18 @@
 
 import uuid
 from datetime import datetime
+import models
 
 '''BaseModel'''
 
 class BaseModel:
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         self.id = str(uuid.uuid4())
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
         
         if len(kwargs) != 0:
-            protected_attrs = ["created_at", "updated_at"]
+            protected_attrs = ["created_at", "update_at"]
             for k, v in kwargs.items():
                 if k in protected_attrs:
                     setattr(self, k, datetime.strptime(v, "%Y-%m-%dT%H:%M:%S.%f"))
