@@ -5,6 +5,8 @@ import models
 from datetime import datetime
 import uuid
 
+date_time = "%Y-%m-%dT%H:%M:%S.%f"
+
 
 class BaseModel():
     """
@@ -13,7 +15,6 @@ class BaseModel():
     """
     def __init__(self, *args, **kwargs):
         """ Object instantiation with optional dictionary attributes """
-        date_time = "%Y-%m-%dT%H:%M:%S.%f"
         if kwargs:
             for key, value in kwargs.items():
                 if key == "created_at":
@@ -33,10 +34,6 @@ class BaseModel():
         self.updated_at = datetime.now()
         models.storage.save()
 
-    def __str__(self):
-        """ String representation of an instance """
-        return f'[{self.__class__.__name__}] ({self.id}) {self.__dict__}'
-
     def to_dict(self):
         """
         Returns a dictionary containing all keys/values
@@ -48,3 +45,7 @@ class BaseModel():
             if isinstance(value, datetime):
                 copy_dict[key] = value.isoformat()
         return copy_dict
+
+    def __str__(self):
+        """ String representation of an instance """
+        return f'[{self.__class__.__name__}] ({self.id}) {self.__dict__}'
