@@ -11,14 +11,14 @@ class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb) '
 
     def do_quit(self, line):
-        """Exit the interprete terminal"""
+        """Quit command to exit the program"""
         return True
 
     def do_EOF(self, line):
         """Finish the execution of the program"""
         return True
 
-    def empty_line(self, line):
+    def emptyline(self):
         """empty line that execute anything"""
         pass
 
