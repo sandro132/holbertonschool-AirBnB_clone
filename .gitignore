@@ -402,3 +402,6 @@ Airbnb
 
 # test 
 test_base_model_dict.py
+
+#json
+*.json
