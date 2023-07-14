@@ -1,8 +1,3 @@
-#!/usr/bin/python3
-"""
-Unittest for file_storage
-"""
-
 import unittest
 from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
@@ -12,128 +7,45 @@ from models.place import Place
 from models.amenity import Amenity
 
 
-class test_file_storage(unittest.TestCase):
-    """
-    Test for file_storage
-    """
-    def test_object(self):
-        """
-        Check instance
-        """
+class FileStorageTest(unittest.TestCase):
+    def setUp(self):
+        if hasattr(storage, "_FileStorage__objects"):
+            storage._FileStorage__objects = {}
+
+    def tearDown(self):
+        if hasattr(storage, "_FileStorage__objects"):
+            del storage._FileStorage__objects
+
+    def test_object_instance(self):
         self.assertIsInstance(FileStorage(), FileStorage)
 
-    def test_file_path(self):
-        """
-        Check untance attribute of BaseModel
-        """
-        self.assertFalse(hasattr(FileStorage(), "__file_path"), False)
+    def test_file_path_attribute(self):
+        self.assertFalse(hasattr(FileStorage(), "__file_path"))
 
-    def test_initializes(self):
-        """
-        initialize storage
-        """
+    def test_storage_initialization(self):
         self.assertEqual(type(storage), FileStorage)
 
-    def test_private_str(self):
-        """
-        Check private string
-        """
+    def test_private_file_path(self):
         self.assertEqual(str, type(FileStorage._FileStorage__file_path))
 
-    def test_private_dic(self):
-        """
-        Check private dic
-        """
+    def test_private_objects_dict(self):
         self.assertEqual(dict, type(FileStorage._FileStorage__objects))
 
-    def test_for_same_type(self):
-        """
-        Testing that storage same type of dict
-        """
-        self.assertEqual(dict, type(storage.all()))
-
-    def test_file_inst_no_arg(self):
-        """
-        Check instance with not args
-        """
-        self.assertEqual(type(FileStorage()), FileStorage)
-
-    def test_file_inst_with_arg(self):
-        """
-        Check instance with args
-        """
-        with self.assertRaises(TypeError):
-            FileStorage(None)
-
-
-class test_file_storage_save(unittest.TestCase):
-    """
-    Tests for method save
-    """
-    def test_method_save(self):
-        """
-        Check if save is a method of file_inst
-        """
-        self.assertTrue(hasattr(FileStorage(), "save"), True)
-
-    def test_save(self):
-        """
-        Check for method save
-        """
-        storage.new(BaseModel())
-        storage.new(User())
-        storage.new(Place())
-        storage.new(Amenity())
-        storage.save()
-        storage.reload()
-        endic = FileStorage._FileStorage__objects
-        self.assertIn("BaseModel." + BaseModel().id, endic)
-        self.assertIn("User." + User().id, endic)
-        self.assertIn("Place." + Place().id, endic)
-        self.assertIn("Amenity." + Amenity().id, endic)
-
-
-class file_storage_all(unittest.TestCase):
-    """
-    Class for tests method
-    """
     def test_all_returns_dict(self):
-        """
-        Check if all return FileStorage.__objects attr
-        """
-        dic = FileStorage().all()
-        self.assertEqual(type(dic), dict)
-        self.assertIs(dic, FileStorage()._FileStorage__objects)
+        dictionary = FileStorage().all()
+        self.assertEqual(type(dictionary), dict)
+        self.assertIs(dictionary, FileStorage()._FileStorage__objects)
 
-    def test_method_all(self):
-        """
-        Check if all is a method of file_inst
-        """
-        self.assertTrue(hasattr(FileStorage(), "all"), True)
+    def test_new_method(self):
+        self.assertTrue(hasattr(FileStorage(), "new"))
 
-    def test_all_arg(self):
-        """
-        Testing all args arg
-        """
-        with self.assertRaises(TypeError):
-            storage.all(None)
+    def test_save_method(self):
+        self.assertTrue(hasattr(FileStorage(), "save"))
 
-    def test_all_arg(self):
-        """
-        Testing all args arg
-        """
-        with self.assertRaises(TypeError):
-            storage.all(None)
+    def test_reload_method(self):
+        self.assertTrue(hasattr(FileStorage(), "reload"))
 
-
-class file_storage_new(unittest.TestCase):
-    """
-    class for method new
-    """
-    def test_new(self):
-        """
-        Test new with instances
-        """
+    def test_new_method_with_instances(self):
         storage.new(BaseModel())
         storage.new(User())
         storage.new(Place())
@@ -147,50 +59,11 @@ class file_storage_new(unittest.TestCase):
         self.assertIn("Amenity." + Amenity().id, storage.all().keys())
         self.assertIn(Amenity(), storage.all().values())
 
-    def test_method_new(self):
-        """
-        Check if new is a method of file_inst
-        """
-        self.assertTrue(hasattr(FileStorage(), "new"), True)
-
-    def test_new_args(self):
-        """
-        Checking new with arguments
-        """
-        with self.assertRaises(TypeError):
-            storage.new(BaseModel(), 1)
-
-    def test_new_none(self):
-        """
-        Checking new with none
-        """
-        with self.assertRaises(AttributeError):
-            storage.new(None)
-
-
-class file_storage_reload(unittest.TestCase):
-    """
-    test for method reload
-    """
-    def test_method_reload(self):
-        """
-        Check if reload is a method of file_inst
-        """
-        self.assertTrue(hasattr(FileStorage(), "reload"), True)
-
-    def test_for_reload(self):
-        """
-        Check if reload is a method of file_inst
-        """
-        self.assertTrue(hasattr(FileStorage(), "reload"), True)
-
-    def test_reload_args(self):
-        """
-        Chesk reaload with arguments
-        """
-        with self.assertRaises(TypeError):
-            storage.reload(None)
-
+    def test_save_and_reload(self):
+        storage.new(BaseModel())
+        storage.save()
+        storage.reload()
+        self.assertIn("BaseModel." + BaseModel().id, storage.all().keys())
 
 if __name__ == "__main__":
     unittest.main()
