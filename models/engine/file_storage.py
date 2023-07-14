@@ -25,8 +25,7 @@ class FileStorage:
         name_clase = type(obj).__name__
         id_obj = obj.id
         self.__objects[f"{name_clase}.{id_obj}"] = obj
-        
-        
+
     def save(self):
         '''save the file in the  __file__path'''
         #create a new empty dictionary
@@ -41,7 +40,7 @@ class FileStorage:
         serialized_obj = json.dumps(new_dic)
         with open(self.__file_path, 'w', encoding="utf-8") as file:
             file.write(serialized_obj)
-            
+
     def reload(self):
         '''load json and reload Model'''
         try:
