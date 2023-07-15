@@ -6,10 +6,11 @@ import cmd
 from models.base_model import BaseModel
 from models.__init__ import storage
 from datetime import datetime
+from models.user import User
 
 
 """the entry point of the command interpreter"""
-class_name = {'BaseModel': BaseModel}
+class_name = {'BaseModel': BaseModel, 'User': User}
 
 class HBNBCommand(cmd.Cmd):
     """class creation"""
@@ -54,6 +55,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             if argv[0] in class_name:
                 if argc == 2:
+                    #copy dictionary
                     inst = storage.all()
                     key_ref = argv[0] + "." + argv[1]
                     if key_ref in inst:
@@ -65,69 +67,46 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("** class doesn't exist **")
 
-    def do_all(self, line):
-        """ select all objects and return all attributes of NAME_OBJECT
-        use 'all [NAME_OBJECT]' - NAME_OBJECT is any name of de object
-        """
-        # Get the argc and argv
-        argv = line.split()
-        argc = len(argv)
-        # Load all the obects in instances
-        instances = storage.all()
-        # Verify if len of argc is equal to 0
-        if argc == 0:
-            # Create a empty list for all instances
-            list_for_all = []
-            for key, obj in instances.items():
-                list_for_all.append(str(obj))
-            print(list_for_all)
-            return
-        # Verify if class not exist in class_name
-        if argv[0] not in class_name:
-            print("** class doesn't exist **")
-            return
-        # If not - exist
-        else:
-            # Create new list
-            new_list = []
-            # Iterate in key and obj
-            for key, obj in instances.items():
-                # Example if BaseModel is the type of
-                # type(obj).__name__ this is equal a
-                # BaseModel
-                if argv[0] == type(obj).__name__:
-                    # Append the string of object
-                    new_list.append(str(obj))
-            # Print the new list
-            print(new_list)
-
     def do_destroy(self, line):
-        """Delete an instance based on the class name and id
-        use - 'destroy [NAME_OBJECT] [ID]'
-        """
-        # Splits line by the spaces
+        """ Deletes an istances based on the class name id """
         argv = line.split()
         argc = len(argv)
-        # if no arguments happen
         if argc == 0:
             print("** class name missing **")
-            return
-        if argv[0] not in class_name:
-            print("** class doesn't exist **")
-            return
-        if argc == 1:
-            print("** instance id missing **")
-            return
-        # Get all instances
-        instances = storage.all()
-        key_ref = argv[0] + "." + argv[1]
-        if key_ref in instances.keys():
-            del instances[key_ref]
-            storage.save()
-            return
-            # if it does not exist
         else:
-            print("** no instance found **")
+            if argv[0] in class_name:
+                if argc == 2:
+                    inst = storage.all()
+                    key_ref = argv[0] + "." + argv[1]
+                    if key_ref in inst:
+                        del inst[key_ref]
+                        storage.save()
+                    else:
+                        print("** no instance found **")
+                else:
+                    print("** instance id missing **")
+            else:
+                print("** class doesn't exist **")
+
+    def do_all(self, line):
+        """Prints all string representation"""
+        argv = line.split()
+        argc = len(argv)
+        inst = storage.all()
+        if argc == 0:
+            all_list = []
+            for k, v in inst.items():
+                all_list.append(str(v))
+            print(all_list)
+        else:
+            if argv[0] in class_name:
+                new_list = []
+                for k, v in inst.items():
+                    if argv[0] == type(v).__name__:
+                        new_list.append(str(v))
+                print(new_list)
+            else:
+                print("** class doesn't exist **")
 
     def do_update(self, line):
         """ update - update a object and add attributes

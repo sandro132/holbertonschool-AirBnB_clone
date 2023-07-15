@@ -29,7 +29,7 @@ class BaseModel:
     def __str__(self):
         # very important, this is the output predeterminate
         return "[{}] ({}) ({})".format(self.__class__.__name__, self.id, self.__dict__)
-    
+
     def save(self):
         #This methot is for save the datatime
         self.updated_at = datetime.now()
