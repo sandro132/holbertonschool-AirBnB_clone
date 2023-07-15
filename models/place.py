@@ -6,6 +6,8 @@ from models.base_model import BaseModel
 
 
 """Class Place"""
+
+
 class Place(BaseModel):
     """Public class attributes"""
     city_id = ""

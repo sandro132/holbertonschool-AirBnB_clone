@@ -6,6 +6,8 @@ from models.base_model import BaseModel
 
 
 """Class Review"""
+
+
 class Review(BaseModel):
     """Public class attributes"""
     place_id = ""

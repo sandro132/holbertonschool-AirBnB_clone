@@ -6,6 +6,8 @@ from models.base_model import BaseModel
 
 
 """Class User"""
+
+
 class User(BaseModel):
     """Public class attributes"""
     email = ""

@@ -13,10 +13,12 @@ from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
 
+
 """the entry point of the command interpreter"""
 class_name = {'BaseModel': BaseModel, 'User': User,
-            'State' : State, 'City' : City, 'Amenity' : Amenity,
-            'Place' : Place, 'Review' : Review}
+              'State': State, 'City': City, 'Amenity': Amenity,
+              'Place': Place, 'Review': Review}
+
 
 class HBNBCommand(cmd.Cmd):
     """class creation"""
@@ -36,10 +38,10 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, line):
         """Create a new instance in BaseModel"""
-        #take out the arguments from line and 
-        #assign in a variable
+        # take out the arguments from line and
+        # assign in a variable
         argv = line.split()
-        #take out the number from arguments
+        # take out the number from arguments
         argc = len(argv)
         if argc == 0:
             print("** class name missing **")
@@ -61,7 +63,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             if argv[0] in class_name:
                 if argc == 2:
-                    #copy dictionary
+                    # copy dictionary
                     inst = storage.all()
                     key_ref = argv[0] + "." + argv[1]
                     if key_ref in inst:
@@ -158,6 +160,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** no instance found **")
             return
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
