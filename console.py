@@ -7,10 +7,16 @@ from models.base_model import BaseModel
 from models.__init__ import storage
 from datetime import datetime
 from models.user import User
-
+from models.city import City
+from models.state import State
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 """the entry point of the command interpreter"""
-class_name = {'BaseModel': BaseModel, 'User': User}
+class_name = {'BaseModel': BaseModel, 'User': User,
+            'State' : State, 'City' : City, 'Amenity' : Amenity,
+            'Place' : Place, 'Review' : Review}
 
 class HBNBCommand(cmd.Cmd):
     """class creation"""

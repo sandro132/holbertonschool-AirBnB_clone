@@ -5,9 +5,9 @@
 from models.base_model import BaseModel
 
 
-""""""
+"""Class User"""
 class User(BaseModel):
-    """create a class"""
+    """Public class attributes"""
     email = ""
     password = ""
     first_name = ""
