@@ -1,6 +1,6 @@
 ![image]("https://s3.amazonaws.com/intranet-projects-files/holbertonschool-higher-level_programming+/263/HBTN-hbnb-Final.png" alt="Holberton School HBnB logo)
 <h1>AirBnb clone</h1>
-Release date April 25, 2023
+Release date July 10, 2023
 
 </p>
           </a>
@@ -49,7 +49,7 @@ Hbnb is a web application designed to mimic Airbnb. In this final version, I ext
 ### Enviroment
 
 <!-- Visual Studio Code -->
-<a href="https://code.visualstudio.com/" target="_blank"> <img height="" src="https://img.shields.io/static/v1?label=&message=Ubuntu&color=E95420&logo=Ubuntu&logoColor=E95420&labelColor=2F333A" alt="Suite CRM"></a>
+<a href="https://code.visualstudio.com/" target="_blank"> <img height="" src="https://img.shields.io/badge/visual-studio-code?logo=visual-studio" alt="Suite CRM"></a>
 <!-- git -->
 <a href="https://git-scm.com/" target="_blank"> <img height="" src="https://img.shields.io/static/v1?label=&message=Git&color=F05032&logo=Git&logoColor=F05032&labelColor=2F333A" alt="git distributed version control system"></a> Control version: Git
 <!-- github -->
@@ -83,7 +83,7 @@ Style guidelines: [Pycodestyle]
 |[README.md](https://github.com/sandro132/holbertonschool-AirBnB_clone/blob/main/README.md)
 |[LICENSE](https://github.com/sandro132/holbertonschool-AirBnB_clone/blob/main/LICENSE)
 |[console.py](https://github.com/sandro132/holbertonschool-AirBnB_clone/blob/main/console.py)
-|[/tests](https://github.com/sandro132/holbertonschool-AirBnB_clone/tree/main/tests))
+|[/tests](https://github.com/sandro132/holbertonschool-AirBnB_clone/tree/main/tests)
 |[/models](https://github.com/sandro132/holbertonschool-AirBnB_clone/tree/main/models)
 
 ## Authors
