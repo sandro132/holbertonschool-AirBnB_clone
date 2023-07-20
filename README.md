@@ -1,4 +1,4 @@
-![image]("https://s3.amazonaws.com/intranet-projects-files/holbertonschool-higher-level_programming+/263/HBTN-hbnb-Final.png" alt="Holberton School HBnB logo)
+![image]("[https://s3.amazonaws.com/intranet-projects-files/holbertonschool-higher-level_programming+/263/HBTN-hbnb-Final.png](https://s3.amazonaws.com/intranet-projects-files/holbertonschool-higher-level_programming+/263/HBTN-hbnb-Final.png)" alt="Holberton School HBnB logo)
 <h1>AirBnb clone</h1>
 Release date July 10, 2023
 
