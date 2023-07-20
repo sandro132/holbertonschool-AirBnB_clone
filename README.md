@@ -89,9 +89,11 @@ Style guidelines: [Pycodestyle]
 ## Authors
 
 * ![GitHub Contributors Image](https://contrib.rocks/image?repo=Bluebee45/holbertonschool-low_level_programming)
-Robinson Muneton Jaramillo - <a href="https://github.com/RM92023" target="_blank"> Bluebee45</a> ![Your Repository's Stats](https://github-readme-stats.vercel.app/api?username=Bluebee45&show_icons=true)
+Santiago Espejo Betancur - <a href="https://github.com/RM92023" target="_blank"> Bluebee45</a>
+![Your Repository's Stats](https://github-readme-stats.vercel.app/api?username=Bluebee45&show_icons=true)
 
 
 
 * ![GitHub Contributors Image](https://contrib.rocks/image?repo=sandro132/holbertonschool-low_level_programming) 
-Miguel Angel Velez Ocampo - <a href="https://github.com/sandro132" target="_blank"> @sandro132</a>![Your Repository's Stats](https://github-readme-stats.vercel.app/api?username=sandro132&show_icons=true)
+Miguel Angel Velez Ocampo - <a href="https://github.com/sandro132" target="_blank"> @sandro132</a>
+![Your Repository's Stats](https://github-readme-stats.vercel.app/api?username=sandro132&show_icons=true)
