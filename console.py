@@ -127,39 +127,37 @@ class HBNBCommand(cmd.Cmd):
         # Verify if the input are empty
         if argc == 0:
             print("** class name missing **")
-            return
-        # If not empty but no find in class_name the
+
+        # If not empty but no find in base the
         # argv[0] = BaseModel
         if argv[0] not in class_name:
             print("** class doesn't exist **")
-            return
+
         # Verify if only the [NAME_OBJECT] fits
         if argc == 1:
             print("** instance id missing **")
-            return
+
         # If argv[2] (ATTRIBUTE_NAME) no are in
         # to_not_edit execute
         # Load all obects
-        instances = storage.all()
+        inst = storage.all()
         # Construct the key according to
         # parameters
         key_ref = argv[0] + "." + argv[1]
         # Verify if the key_ref exists in instances
-        if key_ref in instances.keys():
-            obj_in = instances[key_ref]
+        if key_ref in inst.keys():
+            obj_in = inst[key_ref]
             if argc == 2:
                 print("** attribute name missing **")
-                return
             elif argc == 3:
                 print("** value missing **")
-                return
             else:
                 obj_in.__dict__[argv[2]] = argv[3][1:-1]
                 obj_in.updated_at = datetime.now()
                 storage.save()
         else:
             print("** no instance found **")
-            return
+
 
 
 if __name__ == '__main__':
